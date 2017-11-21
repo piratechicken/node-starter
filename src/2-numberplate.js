@@ -1,16 +1,22 @@
 function formatVanityPlate(string) {
-  let words = string.split(' ')
-  words = words.map(word => word.toUpperCase())
-  return words.join('')
+  let words = string.toLowerCase().replace(/\bfor\b|\bfore\b|four/g, 4).replace(/\btoo\b|\btwo\b|\bto\b/g, 2).split(' ')
+
+  if (words.join('').length > 12) {
+    return 'ERROR!!! Too many letters! ARRGH! OMFG!'
+  }
+  else {
+    words = words.map(word => word.toUpperCase())
+    return words.join('')
+  }
 }
 
 const one = 'I like money'
 console.log(`Number plate: ${ formatVanityPlate(one) }`)
 
-const two = 'Cats for life'
+const two = 'Two cats to the fore'
 console.log(`Number plate: ${ formatVanityPlate(two) }`)
 
-
+console.log(two.length)
 /*
 
 Challenges:
